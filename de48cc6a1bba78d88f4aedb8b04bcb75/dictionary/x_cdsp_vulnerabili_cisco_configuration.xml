@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Cisco Configuration" max_length="40" name="x_cdsp_vulnerabili_cisco_configuration" sizeclass="1" type="collection">
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="End Date" max_length="40" name="end_date" type="glide_date"/>
+        <element label="Instance" max_length="32" name="instance" reference="sn_sec_int_impl" type="reference"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Name" max_length="255" name="name" type="string"/>
+        <element label="OAuth Profile" max_length="32" name="oauth_profile" reference="oauth_entity_profile" type="reference"/>
+        <element label="OAuth Provider" max_length="32" name="oauth_provider" reference="oauth_entity" type="reference"/>
+        <element label="Solution Endpoint" max_length="1024" name="solution_endpoint" type="url"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Start Date" max_length="40" name="start_date" type="glide_date"/>
+        <index name="index">
+            <element name="instance"/>
+        </index>
+        <index name="index2">
+            <element name="oauth_profile"/>
+        </index>
+        <index name="index3">
+            <element name="oauth_provider"/>
+        </index>
+    </element>
+</database>

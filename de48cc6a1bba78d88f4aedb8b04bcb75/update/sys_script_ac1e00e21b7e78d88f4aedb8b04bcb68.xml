@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_cdsp_vulnerabili_cisco_configuration</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>ValidateConfiguration</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+    try {
+
+		gs.info("BR fired");
+        
+            var sol_url;
+            //auth_type = current.authentication_type.trim();
+            //auth_url = current.authentication_endpoint;
+            sol_url = current.solution_endpoint;
+
+        
+            if (current.instance != "") {
+                var instance = new GlideRecord("sn_sec_int_impl");
+                instance.get(current.instance);
+                instance.name = current.name;
+                instance.integration = "d51eb3e21bbebcd88f4aedb8b04bcb34";//gs.getProperty("x_440354_cvrf_inte.third_party_integration"); //"0a82e7212f3570101767d8ddf699b6f2";
+                var instanceID = instance.update();
+
+                /*var schedular = new GlideRecord("x_445396_cvrf_inte_cvrf_solution_integration");
+                schedular.initialize();
+                schedular.name = current.name;
+                schedular.integration = "0a82e7212f3570101767d8ddf699b6f2";
+                schedular.instance = instanceID;
+                //schedular.integration_script = "cd016f512ff530101767d8ddf699b6d7";
+                schedular.insert();*/
+
+
+            } else {
+                var instance = new GlideRecord("sn_sec_int_impl");
+                instance.initialize();
+                instance.name = current.name;
+                instance.integration = "d51eb3e21bbebcd88f4aedb8b04bcb34";//gs.getProperty("x_440354_cvrf_inte.third_party_integration");
+                var instanceID = instance.insert();
+
+                var schedular = new GlideRecord("x_440354_cvrf_inte_cvrf_solution_integration");
+                schedular.initialize();
+                schedular.name = current.name;
+                schedular.integration = "d51eb3e21bbebcd88f4aedb8b04bcb34";//gs.getProperty("x_440354_cvrf_inte.third_party_integration");
+                schedular.instance = instanceID;
+                schedular.integration_script = "124a04ae1bfa78d88f4aedb8b04bcb71";
+                schedular.integration_factory_script = "(function (integrationProcessGr) {return new x_cdsp_vulnerabili.CiscoSolutionIntegration();})(integrationProcessGr);";
+                var schedular_id = schedular.insert();
+
+                var dataSources = ["3a4a973f07713010568cffa08c1ed0e6", "dcd17cdd07c2b010568cffa08c1ed026", "a1f13cdd07c2b010568cffa08c1ed0eb", "291234110706b010568cffa08c1ed093"]
+
+                for (var x in dataSources) {
+                    var m2m = new GlideRecord("sn_vul_int_data_src");
+                    m2m.initialize();
+                    m2m.sys_data_source = dataSources[x];
+                    m2m.sn_vul_integration = schedular_id;
+                    m2m.insert();
+                }
+
+
+                /*var instanceParameters = new GlideRecord("sn_sec_int_impl_config");
+                instanceParameters.addQuery("implementation", instanceID);
+                instanceParameters.addQuery("configuration", "a663e3612f3570101767d8ddf699b656");
+
+                instanceParameters.query()
+                if (instanceParameters.next()) {
+                	instanceParameters.value = sol_url;
+                	instanceParameters.update();
+                }*/
+                current.instance = instanceID;
+            }
+
+            var d = {
+                "ddce73e61bbebcd88f4aedb8b04bcb1f": sol_url, // id of integration parameter: value from the form
+                //"6ddbdf7f07713010568cffa08c1ed03d": auth_type,
+                //"8fdcb2a62f3530101767d8ddf699b619": auth_url,
+                //"100c1f7f07713010568cffa08c1ed07c": user_name,
+                //"cf1cd3bf07713010568cffa08c1ed082": password,
+                //"a5df199f2fb130101767d8ddf699b600": current.client_id,
+                "1a0f73e61bbebcd88f4aedb8b04bcb29": current.name,
+                //"ddff199f2fb130101767d8ddf699b6b5": current.client_secret_key.getDecryptedValue(),
+                //"ca5021df2fb130101767d8ddf699b62d": current.redirect_url,
+                //"bc702d9f2fb130101767d8ddf699b6d0": current.token_url,
+                //"9440ad9f2fb130101767d8ddf699b6de": current.authorization_url,
+                "874ff72a1bbebcd88f4aedb8b04bcbd8": current.oauth_provider,
+                "ed2f37221bbebcd88f4aedb8b04bcb48": current.oauth_profile,
+                "848f33aa1bbebcd88f4aedb8b04bcb91": current.start_date,
+                "619ff7a61bbebcd88f4aedb8b04bcbf7": current.end_date
+            }
+            var instanceParameters;
+            for (var x in d) {
+                instanceParameters = new GlideRecord("sn_sec_int_impl_config");
+                instanceParameters.addQuery("implementation", instanceID);
+                instanceParameters.addQuery("configuration", x);
+
+                instanceParameters.query()
+                if (instanceParameters.next()) {
+                    instanceParameters.value = d[x];
+                    instanceParameters.update();
+                }
+            }
+        
+    } catch (e) {
+        gs.info("Exception in BR : " + e);
+    }
+
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-27 11:52:27</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ac1e00e21b7e78d88f4aedb8b04bcb68</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>ValidateConfiguration</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Vulnerability Response Integration with Cisco" source="x_cdsp_vulnerabili">de48cc6a1bba78d88f4aedb8b04bcb75</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Vulnerability Response Integration with Cisco">de48cc6a1bba78d88f4aedb8b04bcb75</sys_scope>
+        <sys_update_name>sys_script_ac1e00e21b7e78d88f4aedb8b04bcb68</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-28 11:07:13</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=ac1e00e21b7e78d88f4aedb8b04bcb68"/>
+</record_update>

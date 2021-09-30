@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-27 11:28:04</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2ad800a61bfa78d88f4aedb8b04bcba4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_cdsp_vulnerabili_cisco_configuration.x_cdsp_vulnerabili.cisco_configuration_user</sys_name>
+        <sys_package display_value="Vulnerability Response Integration with Cisco" source="x_cdsp_vulnerabili">de48cc6a1bba78d88f4aedb8b04bcb75</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Vulnerability Response Integration with Cisco">de48cc6a1bba78d88f4aedb8b04bcb75</sys_scope>
+        <sys_security_acl display_value="x_cdsp_vulnerabili_cisco_configuration">e6d800a61bfa78d88f4aedb8b04bcb69</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_2ad800a61bfa78d88f4aedb8b04bcba4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-27 11:28:04</sys_updated_on>
+        <sys_user_role display_value="x_cdsp_vulnerabili.cisco_configuration_user" name="x_cdsp_vulnerabili.cisco_configuration_user">16d884661bfa78d88f4aedb8b04bcb03</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

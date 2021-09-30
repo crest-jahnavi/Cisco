@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="sys_domain" label="Domain" language="en" table="x_cdsp_vulnerabili_cisco_advisory_update">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>sys_domain</element>
+            <help/>
+            <hint/>
+            <label>Domain</label>
+            <language>en</language>
+            <name>x_cdsp_vulnerabili_cisco_advisory_update</name>
+            <plural>Domains</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2021-09-27 11:33:59</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>8d3a0c6e1bfa78d88f4aedb8b04bcb1b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Domain</sys_name>
+            <sys_package display_value="Vulnerability Response Integration with Cisco" source="x_cdsp_vulnerabili">de48cc6a1bba78d88f4aedb8b04bcb75</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Vulnerability Response Integration with Cisco">de48cc6a1bba78d88f4aedb8b04bcb75</sys_scope>
+            <sys_update_name>sys_documentation_x_cdsp_vulnerabili_cisco_advisory_update_sys_domain_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2021-09-27 11:33:59</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
